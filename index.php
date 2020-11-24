@@ -4,36 +4,41 @@ use controller\Controller;
 include_once 'controller/Controller.php';
 $controller = new Controller();
 
-/* formulier met gegevens tonen om een rij bij te werken */
 
-// $checkLoggedin = $controller->checkSession();
-
-
-
-
-echo $controller->checkSession();
-
-// if($controller->checkSession()) {
-//     echo "Logged in!";
-// } else {
-//     echo "logged out!";
-// }
-
-if(isset($_POST['logout'])) {
+if(isset($_GET['logout'])) {
     $controller->logoutUser();
 }
 
 
 
+
 if($controller->checkSession() === True) {
-    echo "Je bent ingelogt!";
-} else { 
-    echo "Je bent niet ingelogt";
-}
+    
+    // $controller->showHeader();
+    // echo var_dump($_POST);
+    if(isset($_POST['showForm']))
+     {
+         $controller->showFormPatientAction( $_POST['showForm']);
+     }
+     else if(isset($_POST['update']))
+    {
+        $controller->updatePatientAction();
+    }
+/* CREATE:  formulier afhandeling nieuwe rij */
+    else if(isset($_POST['create']))
+        {
+            $controller->createPatientAction();
+        }
+
+    else if(isset($_POST['delete']))
+    {
+        $controller->deletePatientAction($_POST['delete']);
+    } 
+} else {  
+        $controller->showLogin();
+    }
 
 
-
-$controller->showLogin();   
 if(isset($_POST['loginSubmit'])){
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -42,6 +47,41 @@ if(isset($_POST['loginSubmit'])){
     }
 }        
 
+
+
+if($controller->checkSession() === True) {
+
+    
+$param = $controller->getCurrentPage($_GET['p']);
+
+switch ($param) {
+    case 'dashboard':
+        $controller->showHeader();
+        $controller->showDashBoard();
+        break;
+    case 'aanbod':
+        $controller->showHeader();
+            echo "aanbod";
+        break;
+        case 'create':
+        $controller->showHeader();
+            echo "create";
+        break;
+        case 'medicijnen':
+            $controller->showHeader();
+            echo "medicijnen";
+        break;
+        case 'patienten':
+            $controller->showHeader();
+            echo "patient";
+        break;
+
+    default:
+        $controller->show404();
+      break;
+}
+
+}
 
 // if(isset($_POST['showForm']))
 //     {

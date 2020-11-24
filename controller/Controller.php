@@ -13,16 +13,43 @@ class Controller
         $this->model = new Model();
         $this->view = new View($this->model);
     }
-
     
+
+    public function getCurrentPage($page) {
+        // We gebruiken een .htaccess file dat by default altijd index.php?p= pakt voor ons
+        if(isset($_GET['p'])) {
+            $parameter = $_GET['p'];
+            // yes we think about security sir!
+            $filtered = trim($parameter);
+            $filtered = strip_tags($parameter);
+            $filtered = htmlspecialchars($parameter);
+            $filtered = htmlentities($parameter, ENT_QUOTES, "UTF-8");
+            return $filtered;   
+        }
+    }
+
+    public function showHeader(){
+        $this->view->showHeader();
+    }
+
+    public function showDashBoard() {
+        $this->view->showDashBoard();
+    }
+
     public function showLogin() {
         $this->view->showLoginPage();
     }
 
-    public function checkLogin($email, $password) {
-        echo $this->model->checkLogin($email, $password);
-        
+    public function show404(){
+        $this->view->show404();
+    }
 
+    public function checkLogin($email, $password) {
+        echo "<p style='color: red; 
+                font-weight: bold; 
+                text-align: center; 
+                font-size: 1.5vw'>" .  
+                $this->model->checkLogin($email, $password);
     }
 
     public function checkSession() {
@@ -31,9 +58,10 @@ class Controller
     }
 
     public function logoutUser() {
-    
+        @session_start();
         unset($_SESSION['email']);
         session_destroy();
+        header("Location: index.php");
     }
     
 

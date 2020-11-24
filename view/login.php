@@ -17,8 +17,6 @@ echo <<<EOF
         <input type="text" placeholder="Email" name="email"/>
         <input type="password" placeholder="Password" name="password"/>
         <input type="submit" value="Login" name="loginSubmit">
-        <input type="submit" value="LOGOUT" name="logout">
-
     </form>
     </div>
 </div>

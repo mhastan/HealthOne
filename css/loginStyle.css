@@ -30,7 +30,7 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: black;
   width: 100%;
   border: 0;
   padding: 15px;
@@ -43,7 +43,7 @@
 
  /* Kon hier beter een CSS variable voor maken  */
 .form input[type=submit]:hover,.form input[type=submit]:active,.form input[type=submit]:focus {
-  background: #43A047;
+  background: black;;
 }
 .form .message {
   margin: 15px 0 0;
@@ -91,12 +91,5 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  background: #000000; /* fallback for old browsers */
 }

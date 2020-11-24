@@ -12,11 +12,21 @@ class View
     }
 
     public function showLoginPage() {
-
         include 'login.php';
-
-
     }
+
+    public function showHeader() {
+        include 'header.php';
+    }
+
+    public function showDashBoard() { 
+        include 'dashBoard.php';
+    }
+
+    public function show404() {
+        include '404.php';
+    }
+
 
     public function showPatienten($result = null){
         if($result == 1){
@@ -40,7 +50,7 @@ class View
                         }
                         .patient{
                             width:80%;
-                            background-color:#ccccff;
+                            // background-color:#ccccff;
                             color:darkslategray;
                             font-size:24px;
                             padding:10px;
@@ -117,6 +127,8 @@ class View
         </body>
         </html>";
     }
+
+    
     else{
         /*de html template */
         echo "<form method='post' action='index.php'>

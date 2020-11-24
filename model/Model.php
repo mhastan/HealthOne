@@ -9,14 +9,13 @@ class Model
 
     private function makeConnection(){
         try {
-        $this->database = new \PDO('mysql:host=localhost;dbname=healthone', "root", "");
+            $this->database = new \PDO('mysql:host=localhost;dbname=healthone', "root", "");
         }
 
         catch(PDOException $e) {        
             echo "[-] Cant connect to MySQL Database! " + $e->getMessage(); 
 
         }
-    
     }
 
 
@@ -36,7 +35,10 @@ class Model
 
         if($count == 1 && !empty($row)) {
             $_SESSION['email'] = $row['email'];
-            return "Logged in!";
+            $_SESSION['role'] = $row['role'];
+            
+            header("Location: /dashboard");
+            
         } else {  
             return "Credentials kloppen niet!";
     }
