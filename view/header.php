@@ -58,7 +58,4 @@ echo <<<EOF
     </div>
     </nav>
   </header>
-
 EOF;
-
-?>

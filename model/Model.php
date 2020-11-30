@@ -1,8 +1,9 @@
 <?php
 
-
 namespace model;
 include_once ('model/Patient.php');
+include_once ('model/Medicijn.php');
+
 class Model
 {
     private $database;
@@ -35,8 +36,8 @@ class Model
 
         if($count == 1 && !empty($row)) {
             $_SESSION['email'] = $row['email'];
+            $_SESSION['voornaam'] = $row['voornaam'];
             $_SESSION['role'] = $row['role'];
-            
             header("Location: /dashboard");
             
         } else {  
@@ -90,11 +91,24 @@ class Model
         $this->makeConnection();
         $selection = $this->database->query('SELECT * FROM `patienten`');
         if($selection){
-            $result=$selection->fetchAll(\PDO::FETCH_CLASS,\model\Patient::class);
+            $result = $selection->fetchAll(\PDO::FETCH_CLASS,\model\Patient::class);
             return $result;
         }
         return null;
     }
+
+
+    public function getMedicijnen() { 
+        $this->makeConnection();
+        $selection = $this->database->query('SELECT * FROM `medicijnen`');
+        if($selection){
+            $result=$selection->fetchAll(\PDO::FETCH_CLASS,\model\Medicijn::class);
+            return $result;
+        }
+        return $result;
+        
+    }
+
     public function selectPatient($id){
 
         $this->makeConnection();

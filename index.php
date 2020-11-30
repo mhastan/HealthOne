@@ -9,48 +9,39 @@ if(isset($_GET['logout'])) {
     $controller->logoutUser();
 }
 
+if(isset($_GET['del'])) {
+     header("Location: /patienten", true, 301);
+}
 
 
 
-if($controller->checkSession() === True) {
+// if($controller->checkSession() === True) {
     
-    // $controller->showHeader();
-    // echo var_dump($_POST);
-    if(isset($_POST['showForm']))
-     {
-         $controller->showFormPatientAction( $_POST['showForm']);
-     }
-     else if(isset($_POST['update']))
-    {
-        $controller->updatePatientAction();
-    }
-/* CREATE:  formulier afhandeling nieuwe rij */
-    else if(isset($_POST['create']))
-        {
-            $controller->createPatientAction();
-        }
+//     // $controller->showHeader();
+//     // echo var_dump($_POST);
+//     if(isset($_POST['showForm']))
+//      {
+//          $controller->showFormPatientAction( $_POST['showForm']);
+//      }
+//      else if(isset($_POST['update']))
+//     {
+//         $controller->updatePatientAction();
+//     }
+// /* CREATE:  formulier afhandeling nieuwe rij */
+//     else if(isset($_POST['create']))
+//         {
+//             $controller->createPatientAction();
+//         }
 
-    else if(isset($_POST['delete']))
-    {
-        $controller->deletePatientAction($_POST['delete']);
-    } 
-} else {  
-        $controller->showLogin();
-    }
-
-
-if(isset($_POST['loginSubmit'])){
-    $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
-    if($email != "" && $password != "") {
-        $controller->checkLogin($email, $password);
-    }
-}        
-
-
+//     else if(isset($_POST['delete']))
+//     {
+//         $controller->deletePatientAction($_POST['delete']);
+//     } 
+// } else {  
+//         $controller->showLogin();
+//     }
 
 if($controller->checkSession() === True) {
-
     
 $param = $controller->getCurrentPage($_GET['p']);
 
@@ -65,23 +56,41 @@ switch ($param) {
         break;
         case 'create':
         $controller->showHeader();
-            echo "create";
+        $controller->create();
         break;
         case 'medicijnen':
             $controller->showHeader();
-            echo "medicijnen";
+            $controller->getMedicijnen();
         break;
         case 'patienten':
             $controller->showHeader();
-            echo "patient";
+            $controller->showPatienten();
+            $id =  @$_GET['del'];
+            if(isset($id)) {
+                $controller->deletePatientAction($id);
+            }
         break;
-
+        case 'editPatient':
+            $controller->showHeader();
+            $controller->editPatient();    
+        break;  
     default:
         $controller->show404();
-      break;
+    break;
+    }
+} else { 
+    $controller->showLogin();
 }
 
-}
+
+if(isset($_POST['loginSubmit'])){
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    if($email != "" && $password != "") {
+        $controller->checkLogin($email, $password);
+    }
+}        
+
 
 // if(isset($_POST['showForm']))
 //     {
