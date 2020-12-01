@@ -1,6 +1,5 @@
 # HealthOne
 
-i
 Welkom bij mijn HealthOne project:
 Een PHP CRUD (Create Read Update Delete) Applicatie, wat het mogelijk maakt om patienten te toevoegen, te fetchen uit database, veranderen, updaten.
 
