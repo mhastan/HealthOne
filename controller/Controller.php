@@ -89,11 +89,15 @@ return $data;
     }
 
     public function checkLogin($email, $password) {
-        echo "<p style='color: red; 
-                font-weight: bold; 
-                text-align: center; 
-                font-size: 1.5vw'>" .  
+        echo "<script type='text/javascript'>
+
+        let Div = document.getElementById('errorMsg').innerHTML = '<h3> Verkeerde details </h3>';
+
+
+        </script>
+ ";
                 $this->model->checkLogin($email, $password);
+    
     }
 
     public function checkSession() {

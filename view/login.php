@@ -18,8 +18,13 @@ echo <<<EOF
         <input type="text" placeholder="Email" name="email"/>
         <input type="password" placeholder="Password" name="password"/>
         <input type="submit" value="Login" name="loginSubmit">
-        
-    </form>
+    
+        <!-- We gebruiken ParticlesJS dus gebruiken we hier InnerHTML voor in controller! -->
+      <div id="errorMsg"> 
+    
+      </div>
+    
+      </form>
     </div>
 </div>
 
@@ -40,7 +45,20 @@ echo <<<EOF
     position: relative;
   }
 
+  #errorMsg { 
+
+    color: red; 
+    border: 1px solid #FFF;
+    background-color: black;
+    text-transform: uppercase;
+
+  }
+
+
+
 </style>
+
+
 
 
 

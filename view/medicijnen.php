@@ -26,7 +26,9 @@ if($medicijnen !== null) {
                   <td>" . $medicijn->werking . "</td>
                   <td>" . $medicijn->bijwerking . "</td>
                   <td>" . $medicijn->verzekerd . "</td>
-            
+                  <td> <a href=\"editPatient?id="."$medicijn->id\" </a><i class=\"fas fa-user-edit\"> </i> </td>
+                  <td> <a href=\"patienten?del="."$medicijn->id\" </a> <i class=\"far fa-trash-alt\"></i> </td> 
+  
                 </tr>"; 
           echo "</tbody>";
         }
